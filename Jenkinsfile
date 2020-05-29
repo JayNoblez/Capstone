@@ -12,7 +12,7 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'DockerHubCred', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
-						sudo -n docker build -t jaynoblez/Jk8Capstone .
+						sudo -n docker build -t jaynoblez/jk8capstone .
 					'''
 				}
 			}
