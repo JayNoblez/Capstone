@@ -22,7 +22,7 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'DockerHubCred', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
-						sudo -n docker login 
+						sudo -n docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
 						sudo -n docker push jaynoblez/jkcapstone
 					'''
 				}
