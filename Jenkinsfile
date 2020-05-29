@@ -49,7 +49,7 @@ pipeline {
 				}
 			}
 		}
- stage('Deploy Green Container') {
+               stage('Deploy Green Container') {
                         steps {
                                 withAWS(region:'eu-central-1', credentials:'AWSJenkins') {
                                         sh '''
@@ -59,47 +59,6 @@ pipeline {
                         }
                 }
 
-                stage('Create the service in the cluster, redirect to blue') {
-                        steps {
-                                withAWS(region:'eu-central-1', credentials:'AWSJenkins') {
-                                        sh '''
-                                                kubectl apply -f ./blue-service.json
-                                        '''
-                                }
-                        }
-                }
-
-                stage('Wait for User to Approve') {
-             steps {
-                input "Ready to redirect traffic to green?"
-            }
-        }
-
-                stage('Create the Service in the Cluster, Redirect to green') {
-                        steps {
-                                withAWS(region:'eu-central-1', credentials:'AWSJenkins') {
-                                     sh '''
-                                                kubectl apply -f ./blue-service.json
-                                        '''
-                                }
-                        }
-                }
-
-                stage('Wait for User to Approve') {
-            steps {
-                input "Ready to redirect traffic to green?"
-            }
-        }
-
-                stage('Create the Service in the Cluster, Redirect to green') {
-                        steps {
-                                withAWS(region:'eu-central-1', credentials:'AWSJenkins') {
-                                        sh '''
-                                                kubectl apply -f ./green-service.json
-                                        '''
-                                }
-                        }
-                }
 
 }
 }
