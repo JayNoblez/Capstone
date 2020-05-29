@@ -33,8 +33,8 @@ pipeline {
 				withAWS(region:'eu-central-1', credentials:'AWSJenkins') {
 					sh '''
 						sudo -s
-                                                kubectl config get-contexts
-						kubectl config use-context arn:aws:eks:eu-central-1:842187592768:cluster/JK8capstone
+                                                sudo kubectl config get-contexts
+						sudo kubectl config use-context arn:aws:eks:eu-central-1:842187592768:cluster/JK8capstone
 					'''
 				}
 			}
